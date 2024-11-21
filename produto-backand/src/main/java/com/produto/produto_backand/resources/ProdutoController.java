@@ -3,6 +3,7 @@ package com.produto.produto_backand.resources;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,9 +48,16 @@ public class ProdutoController {
     }
 
     @GetMapping("produtos/{id}") //recupera os produto pelo id
-    public Produto getProduto(@PathVariable int id){
+    public ResponseEntity<Produto> getProduto(@PathVariable int id){
 
-        return  produtos.get(id - 1);
+        if(id <= produtos.size()){    
+            return ResponseEntity.ok(produtos.get(id - 1));
+        }
+        else{
+            return ResponseEntity.notFound().build();
+        }
+
+        
     }
 
     @GetMapping("produtos") 
