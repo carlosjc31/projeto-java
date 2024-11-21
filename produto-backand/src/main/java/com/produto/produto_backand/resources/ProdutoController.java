@@ -3,10 +3,12 @@ package com.produto.produto_backand.resources;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.produto.produto_backand.modelos.Produto;
 
@@ -54,7 +56,7 @@ public class ProdutoController {
             return ResponseEntity.ok(produtos.get(id - 1));
         }
         else{
-            return ResponseEntity.notFound().build();
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found ");  
         }
 
         
