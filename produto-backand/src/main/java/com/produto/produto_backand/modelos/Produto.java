@@ -3,11 +3,12 @@ package com.produto.produto_backand.modelos;
 import org.springframework.web.bind.annotation.GetMapping;
 
 public class Produto {
-
+    //Atributos
     private int id;
     private String nome;
     private double preco;
 
+    //Métodos
     @GetMapping
     public int getId() {
         return id;
