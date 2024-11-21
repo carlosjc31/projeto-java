@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.produto.produto_backand.modelos.Produto;
@@ -45,25 +46,16 @@ public class ProdutoController {
 
     }
 
-    @GetMapping("produto")
-    public Produto getProduto(){
+    @GetMapping("produtos/{id}") //recupera os produto pelo id
+    public Produto getProduto(@PathVariable int id){
 
-        Produto p = new Produto();
-        p.setId(1);
-        p.setNome("Notebokk Dell");
-        p.setPreco(2000.00);
-
-        return p;
+        return  produtos.get(id - 1);
     }
-    @GetMapping("produtos")
+
+    @GetMapping("produtos") 
     public List<Produto> getProdutos(){
 
-
-        List<Produto> ListaProdutos = new ArrayList<>();
-
-
-
-        return ListaProdutos;
+        return produtos;
     }
 
 }
