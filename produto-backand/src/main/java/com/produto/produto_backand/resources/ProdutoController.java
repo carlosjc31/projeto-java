@@ -8,21 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.produto.produto_backand.modelos.Produto;
 
+import jakarta.annotation.PostConstruct;
+
 @RestController
 public class ProdutoController {
     
-    @GetMapping("produto")
-    public Produto getProduto(){
+    List<Produto> produtos = new ArrayList<>();
 
-        Produto p = new Produto();
-        p.setId(1);
-        p.setNome("Notebokk Dell");
-        p.setPreco(2000.00);
+    @PostConstruct
+    public void init(){
 
-        return p;
-    }
-    @GetMapping("produtos")
-    public List<Produto> getProdutos(){
         Produto p1 = new Produto();
         p1.setId(1);
         p1.setNome("Notebokk Dell");
@@ -43,12 +38,30 @@ public class ProdutoController {
         p4.setNome("Notebokk Apple");
         p4.setPreco(4000.00);
 
+        produtos.add(p1);
+        produtos.add(p2);
+        produtos.add(p3);
+        produtos.add(p4);
+
+    }
+
+    @GetMapping("produto")
+    public Produto getProduto(){
+
+        Produto p = new Produto();
+        p.setId(1);
+        p.setNome("Notebokk Dell");
+        p.setPreco(2000.00);
+
+        return p;
+    }
+    @GetMapping("produtos")
+    public List<Produto> getProdutos(){
+
+
         List<Produto> ListaProdutos = new ArrayList<>();
 
-        ListaProdutos.add(p1);
-        ListaProdutos.add(p2);
-        ListaProdutos.add(p3);
-        ListaProdutos.add(p4);
+
 
         return ListaProdutos;
     }
